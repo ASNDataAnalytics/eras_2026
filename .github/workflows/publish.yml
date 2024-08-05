@@ -25,7 +25,6 @@ jobs:
             any::lubridate
             any::stringr
             any::readxl
-            # any::asn
 
 
       - name: Setup node
