@@ -40,7 +40,9 @@ Plot.plot({
       x: "ERAS", 
       y: "num_candidate",
       tip: true,
-      fill: "#ff8200"
+      fill: "#ff8200", 
+      insetLeft: 10, 
+      insetRight: 10
     }),
   ]
 })
@@ -49,6 +51,23 @@ Plot.plot({
 
 ```js
 eras_2025_edu[eras_2025_edu.length - 1]["ERAS"]
+```
+
+```js
+
+   eras_2025_edu.filter((d) => d.ERAS === 2018)
+      .filter((d) => d.month === 9)
+      .filter((d) => d.edu_status === "US DO")
+      .map((d) => d.num_candidate)
+
+```
+
+```js
+
+eras_2025_edu.filter((d) => d.month_year === 2017-10-01)
+    // .filter((d) => d.edu_status === "US DO")
+    // .map((d) => ({d.num_candidate})
+
 ```
 
 ```js
@@ -62,3 +81,4 @@ Inputs.table(
 (3 / (eras_2025_edu[eras_2025_edu.length -1].num_application))
 
 ```
+

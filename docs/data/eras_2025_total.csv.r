@@ -3,7 +3,7 @@ require(dplyr)
 require(lubridate)
 require(stringr)
 require(readxl)
-require(asn)
+# require(asn)
 
 
 df_total <-
