@@ -25,6 +25,7 @@ jobs:
             any::lubridate
             any::stringr
             any::readxl
+            any::scales
 
 
       - name: Setup node
