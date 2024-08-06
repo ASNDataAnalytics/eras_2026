@@ -3,52 +3,226 @@ theme: midnight
 title: Nephrology Applications
 ---
 
-```js
+<!-- 00 Styling -->
 
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.observablehq {
+  font-family: 'Roboto', sans-serif;
+  font-size: 3em;
+}
+
+svg {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+}
+
+</style>
+
+<!-- 01 Data -->
+
+```js
 const eras_2025_edu = FileAttachment("./data/eras_2025_edu.csv").csv({ typed: true});
-
+const eras_2025_total = FileAttachment("./data/eras_2025_total.csv").csv({ typed: true });
+const july_regression = [
+  {"Year":2014,"July":303,"Matched":306},
+  {"Year":2015,"July":274,"Matched":254},
+  {"Year":2016,"July":236,"Matched":276},
+  {"Year":2017,"July":235,"Matched":284},
+  {"Year":2018,"July":252,"Matched":285},
+  {"Year":2019,"July":286,"Matched":291},
+  {"Year":2020,"July":273,"Matched":291},
+  {"Year":2021,"July":375,"Matched":345},
+  {"Year":2022,"July":349,"Matched":335},
+  {"Year":2023,"July":368,"Matched":359}
+  ];
+const app_year_cur_month = FileAttachment("./data/app_year_cur_month.csv").csv({ typed: true});  
+const avg_apps = FileAttachment("./data/avg_apps_edu.csv").csv({ typed: true});
+const app_pct_change = FileAttachment("./data/app_pct_change.csv").csv({ typed: true });
+const cum_apps_year = FileAttachment("./data/cum_apps_year.csv.r").csv({ typed: true });
 ```
 
-<!-- Cards with big numbers -->
+###### ERAS 2025—Nephrology Applications
 
-<!-- <div class="grid grid-cols-4">
+<!-- 02 Cards Showing Top-Line Application Numbers -->
+
+<div class="grid grid-cols-4">
   <div class="card">
-    <h2>Application Year</h2>
-    <span class="big">${eras_2025_edu[eras_2025_edu.length - 1][ERAS]}</span>
+    <h2>Data Through</h2>
+    <span class="big">${
+      eras_2025_total[eras_2025_total.length - 1]["month_name"]
+      },  
+      ${eras_2025_total[eras_2025_total.length - 1]["ERAS"]}
+    </span>
   </div>
   <div class="card">
-    <h2>Russia 🇷🇺 <span class="muted">/ Soviet Union</span></h2>
-    <span class="big">${launches.filter((d) => d.stateId === "SU" || d.stateId === "RU").length.toLocaleString("en-US")}</span>
+    <h2>IMG Applications</h2>
+    <span class="big">${eras_2025_edu.filter((d) => d.ERAS === 2018)
+      .filter((d) => d.month === 9)
+      .filter((d) => d.edu_status === "IMG")
+      .map((d) => d.num_application)}</span>
   </div>
   <div class="card">
-    <h2>China 🇨🇳</h2>
-    <span class="big">${launches.filter((d) => d.stateId === "CN").length.toLocaleString("en-US")}</span>
+    <h2>US MD Applications</h2>
+    <span class="big">${eras_2025_edu.filter((d) => d.ERAS === 2018)
+      .filter((d) => d.month === 9)
+      .filter((d) => d.edu_status === "US MD")
+      .map((d) => d.num_application)}</span>
   </div>
   <div class="card">
-    <h2>Other</h2>
-    <span class="big">${launches.filter((d) => d.stateId !== "US" && d.stateId !== "SU" && d.stateId !== "RU" && d.stateId !== "CN").length.toLocaleString("en-US")}</span>
+    <h2>Osteopathic Applications</h2>
+    <span class="big">${   eras_2025_edu.filter((d) => d.ERAS === 2018)
+      .filter((d) => d.month === 9)
+      .filter((d) => d.edu_status === "US DO")
+      .map((d) => d.num_application)}</span>
   </div>
-</div> -->
+</div>
 
-```js
+---
 
-Plot.plot({
-  marks: [
-    Plot.ruleY([0]),
+<!-- 03 Visualizations Row 1 -->
 
-    Plot.barY(eras_2025_edu, {
-      x: "ERAS", 
-      y: "num_candidate",
-      tip: true,
-      fill: "#ff8200", 
-      insetLeft: 10, 
-      insetRight: 10
-    }),
-  ]
-})
+<div class="grid grid-cols-2">
+  <div class="card">
+  <h2><b>Cumulative Applications Through ${
+      eras_2025_total[eras_2025_total.length - 1]["month_name"]
+      }</b>
+  </h2>
+  ${
+    resize((width) => Plot.plot({
+      width,
+      marginBottom: 50,
+      marginLeft: 60,
+      caption: "Source: ERAS",
+       x: { tickFormat: "", label: "ERAS", labelOffset: 35 },
+       y: {label: "Applications"},
+       marginTop: 30,
+      marks: [
+        Plot.ruleY([0]),
+        Plot.barY(app_year_cur_month, {
+          x: "ERAS", 
+          y: "num_application",
+          tip: true,
+          fill: "fill", 
+          insetLeft: 10, 
+          insetRight: 10,
+          title: (d) => `ERAS: ${d.ERAS}\nApplications: ${d.num_application.toLocaleString("en-US")}`
+          })
+        ]
+      })
+    )
+  }
+</div>
 
-```
+  <div class="card">
+  <h2>
+    <b>Mean Applications/Candidate by Medical School Through ${
+      eras_2025_total[eras_2025_total.length - 1]["month_name"]
+      }
+    </b>
+  </h2>
+  ${
+    resize((width) => Plot.plot({
+      width,
+      x: {label: "Mean Applications"},
+      y: {label: " "},
+      marginBottom: 50,
+      marginLeft: 60,
+      marks: [
+        Plot.barX(
+          avg_apps,
+          {
+            x: "avg_apps_edu_status",
+            y: "edu_status",
+            fill: "color",
+            tip: true,
+            title: (d) => `${d.edu_status}: ${d.avg_apps_edu_status}`,
+            insetTop: 5,
+            insetBottom: 5
+          }
+        ),
+        Plot.ruleX([0])  
+      ]
+      })
+    )
+  }
 
+</div>
+</div>
+
+---
+
+<!-- 04 Visualizations Row 2 -->
+
+<div class="grid grid-cols-2">
+  <div class="card">
+  <h2>
+    <b>
+    Percent Change YOY Through ${
+      eras_2025_total[eras_2025_total.length - 1]["month_name"]
+      }
+    </b>
+  </h2>
+  ${
+    resize((width) => Plot.plot({
+      width,
+      x: { tickFormat: "", label: "ERAS", labelOffset: 35 },
+      y: { tickFormat: "", label: "%", labelOffset: 35 },
+      marks: [
+        Plot.ruleY([0]),
+        Plot.barY(app_pct_change, {
+          x: "ERAS", 
+          y: "pct_c",
+          tip: true,
+          fill: "color", 
+          insetLeft: 10, 
+          insetRight: 10
+        })
+      ],
+      marginBottom: 60
+    })
+  )
+}
+
+</div>
+
+  <div class="card">
+  <h2>
+    <b>
+    Cumulative Applications by ERAS Year  
+    </b>
+  </h2>
+  ${
+    resize((width) => Plot.plot({
+      width,
+      x: { tickFormat: "", label: "Month", labelOffset: 35 },
+      y: {label: "Applications"},
+      marks: [
+        Plot.ruleY([0]),
+        Plot.lineY(cum_apps_year, {
+          x: "month", 
+          y: "tots_applications",
+          tip: true,
+          stroke: "color", 
+          insetLeft: 10, 
+          insetRight: 10
+        })
+      ]
+    })
+  )
+}
+
+</div>
+</div>
+
+
+
+<!-- 
 ```js
 eras_2025_edu[eras_2025_edu.length - 1]["ERAS"]
 ```
@@ -80,5 +254,5 @@ Inputs.table(
 ```js
 (3 / (eras_2025_edu[eras_2025_edu.length -1].num_application))
 
-```
+``` -->
 

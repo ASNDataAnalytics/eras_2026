@@ -1,10 +1,12 @@
+# 01 Packages ----
+
 require(readr)
 require(dplyr)
 require(lubridate)
 require(stringr)
 require(readxl)
-# require(asn)
 
+# 02 Data ----
 
 df_total <-
   read_excel(
@@ -13,6 +15,7 @@ df_total <-
     na = "UK"
   )
 
+# 03 Clean ----
 
 df_total <- 
   df_total |> 
@@ -30,6 +33,8 @@ df_total <-
   mutate(
     ERAS = as.numeric(ERAS)
   )
+
+# 04 Push to stdout ----
 
 cat(
   format_csv(df_total)

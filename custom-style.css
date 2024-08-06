@@ -1,0 +1,28 @@
+@import url("observablehq:default.css");
+/* Importing a Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+
+ /* h1, h2, h3 {
+    font-family: 'Roboto', sans-serif;
+    color: #00468b;
+  } */
+  /* p, ul, li  {
+    font-size: 1.2rem;
+  }
+  p {
+    color: #000000
+  }
+  label {
+    font-size: 18px;
+  } */
+
+  /* tspan {
+    fill: #282541;
+    font: 700 16px/1.4 "Roboto Condensed", sans-serif;
+  } */
+  

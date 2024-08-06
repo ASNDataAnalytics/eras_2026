@@ -114,8 +114,54 @@ df_edu <-
     )
   )
 
+## 04.02. Calculate Current Month
+
+cur_mon <-
+  df_edu |>
+    slice(
+      df_edu |> (\(.) nrow(.))()
+    ) |>
+    pull(month_year) |>
+    lubridate::month()
+
+cur_mon_lab <- 
+  lubridate::month(
+    cur_mon,
+    label = TRUE,
+    abbr = FALSE
+  )
+
+## 04.02. Calculate Mean Applications by Educational Status
+
+
+avg_apps <- 
+  df_edu |>
+  filter(
+    ERAS == max(ERAS)
+  ) |> 
+  filter(month <= cur_mon) |>
+  group_by(
+    ERAS, edu_status
+  ) |>
+  summarize(
+    across(where(is.numeric), sum, na.rm = FALSE)
+  ) |> 
+  ungroup() |> 
+  mutate(
+    avg_apps_edu_status = round(num_application / num_candidate, 0)
+  ) |> 
+  mutate(
+    edu_status = as.factor(edu_status),
+    color = case_when(
+      edu_status == "IMG" ~  "#00468b",
+      edu_status == "US MD" ~ "#0077C8",
+      edu_status == "US DO" ~ "#cccccc",
+    )
+  ) 
+
+
 # 05 Push to stdout ----
 
 cat(
-  format_csv(df_edu)
+  format_csv(avg_apps)
 )

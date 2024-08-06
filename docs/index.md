@@ -1,40 +1,50 @@
 ---
 toc: false
 theme: midnight
+header: <a href="https://data.asn-online.org"><img src="/asn_ko_button.png"></a>
+footer: <a href="https://data.asn-online.org">ASN Data</a>
 ---
 
 <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.observablehq {
+  font-family: 'Roboto', sans-serif;
+  font-size: 3em;
+}
+
+svg {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+}
 
 .hero {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: var(--sans-serif);
+  font-family: 'Roboto', sans-serif;
   margin: 4rem 0 8rem;
+  color: "#0077c8";
   text-wrap: balance;
   text-align: center;
-}
-
-.hero h1 {
-  margin: 2rem 0;
-  max-width: none;
-  font-size: 14vw;
-  font-weight: 900;
-  line-height: 1;
-  background: linear-gradient(30deg, var(--theme-foreground-focus), currentColor);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .hero h2 {
   margin: 0;
   max-width: 34em;
-  font-size: 20px;
+  font-size: 2em;
   font-style: initial;
   font-weight: 500;
+  color: "#0077c8";
   line-height: 1.5;
-  color: var(--theme-foreground-muted);
+}
+#observablehq-footer > div:nth-child(2) > a:nth-child(1){
+  font-size: 3em;
 }
 
 @media (min-width: 640px) {
@@ -46,50 +56,58 @@ theme: midnight
 </style>
 
 <div class="hero">
-  <h1>Hello, Observable Framework</h1>
-  <h2>Welcome to your new project! Edit&nbsp;<code style="font-size: 90%;">docs/index.md</code> to change this page.</h2>
-  <a href="https://observablehq.com/framework/getting-started" target="_blank">Get started<span style="display: inline-block; margin-left: 0.25rem;">↗︎</span></a>
+  <h2>ERAS 2025 Nephrology Fellowship Applications</h1>
 </div>
 
-<div class="grid grid-cols-2" style="grid-auto-rows: 504px;">
+<div class="grid grid-cols-1" style="grid-auto-rows: 504px;">
   <div class="card">${
     resize((width) => Plot.plot({
-      title: "Your awesomeness over time 🚀",
-      subtitle: "Up and to the right!",
-      width,
-      y: {grid: true, label: "Awesomeness"},
-      marks: [
-        Plot.ruleY([0]),
-        Plot.lineY(aapl, {x: "Date", y: "Close", tip: true})
-      ]
-    }))
-  }</div>
-  <div class="card">${
-    resize((width) => Plot.plot({
-      title: "How big are penguins, anyway? 🐧",
-      width,
-      grid: true,
-      x: {label: "Body mass (g)"},
-      y: {label: "Flipper length (mm)"},
-      color: {legend: true},
-      marks: [
-        Plot.linearRegressionY(penguins, {x: "body_mass_g", y: "flipper_length_mm", stroke: "species"}),
-        Plot.dot(penguins, {x: "body_mass_g", y: "flipper_length_mm", stroke: "species", tip: true})
-      ]
-    }))
-  }</div>
+  title: "Predicted Nephrology Match Outcome",
+  width,
+  grid: true,
+  x: {label: "July Nephrology Candidates"},
+  y: {label: "Matched Nephrology Fellows"},
+  color: {legend: true},
+  marginBottom: 50,
+  caption: "Sources: NRMP and ERAS",
+  marginLeft: 60,
+  marks: [
+    Plot.linearRegressionY(
+      july_regression, 
+      {x: "July", y: "Matched", stroke: "#ff8200"}
+    ),
+    Plot.dot(
+      july_regression, 
+      {x: "July", y: "Matched", tip: true}
+    ),
+    Plot.dot(
+      [{x: 300, y: 300}], 
+      {
+        x: "x",
+        y: "y",
+        r:10,
+        fill: "#ff8200",
+        tip: true,
+        title: (d) => `July Candidates: ${d.x}\nPredicted Matches: ${d.y.toLocaleString("en-US")}`
+    })
+  ]
+  }))
+}
+
+</div>
 </div>
 
 ```js
 const aapl = FileAttachment("aapl.csv").csv({typed: true});
 const penguins = FileAttachment("penguins.csv").csv({typed: true});
+const eras_2025_edu = FileAttachment("./data/eras_2025_edu.csv").csv({ typed: true});
+const eras_2025_total = FileAttachment("./data/eras_2025_total.csv.r").csv({ typed: true });
+
+const july_regression = [{"Year":2014,"July":303,"Matched":306},{"Year":2015,"July":274,"Matched":254},{"Year":2016,"July":236,"Matched":276},{"Year":2017,"July":235,"Matched":284},{"Year":2018,"July":252,"Matched":285},{"Year":2019,"July":286,"Matched":291},{"Year":2020,"July":273,"Matched":291},{"Year":2021,"July":375,"Matched":345},{"Year":2022,"July":349,"Matched":335},{"Year":2023,"July":368,"Matched":359}]
 ```
 
 ---
 
-## Next steps
-
-Here are some ideas of things you could try…
 
 <div class="grid grid-cols-4">
   <div class="card">
