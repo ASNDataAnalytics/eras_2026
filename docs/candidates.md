@@ -26,8 +26,12 @@ svg {
 ```js
 const eras_2025_total = FileAttachment("./data/eras_2025_total.csv").csv({ typed: true });
 const eras_2025_edu = FileAttachment("./data/eras_2025_edu.csv").csv({ typed: true});
-  const july_regression = [{"Year":2014,"July":303,"Matched":306},{"Year":2015,"July":274,"Matched":254},{"Year":2016,"July":236,"Matched":276},{"Year":2017,"July":235,"Matched":284},{"Year":2018,"July":252,"Matched":285},{"Year":2019,"July":286,"Matched":291},{"Year":2020,"July":273,"Matched":291},{"Year":2021,"July":375,"Matched":345},{"Year":2022,"July":349,"Matched":335},{"Year":2023,"July":368,"Matched":359}];
+const app_year_cur_month = FileAttachment("./data/app_year_cur_month.csv").csv({ typed: true});
+const candidates_med_status_yoy = FileAttachment("./data/candidates_med_status_yoy.csv").csv({ typed: true });
+const candidates_pct_change = FileAttachment("./data/candidates_pct_change.csv").csv({ typed: true });
+const cum_candidates_year = FileAttachment("").csv({ typed: true });
 ```
+
 <!-- ## ERAS 2025—Nephrology Candidates Through ${eras_2025_edu[eras_2025_edu.length - 1]["ERAS"]} -->
 ###### ERAS 2025—Nephrology Candidates
 
@@ -68,75 +72,82 @@ const eras_2025_edu = FileAttachment("./data/eras_2025_edu.csv").csv({ typed: tr
 
 <div class="grid grid-cols-2">
   <div class="card">
-  <h2>fig 1</h2>
+  <h2><b>Cumulative Candidates Through ${
+      eras_2025_total[eras_2025_total.length - 1]["month_name"]
+      }</b>
+  </h2>
   ${
     resize((width) => Plot.plot({
-      title: "Predicted Nephrology Match Outcome",
-  width,
-  grid: true,
-  x: {label: "July Nephrology Candidates"},
-  y: {label: "Matched Nephrology Fellows"},
-  color: {legend: true},
-  marginBottom: 50,
-  marginLeft: 60,
-  marks: [
-    Plot.linearRegressionY(
-      july_regression, 
-      {x: "July", y: "Matched", stroke: "#ff8200"}
-    ),
-    Plot.dot(
-      july_regression, 
-      {x: "July", y: "Matched", tip: true}
-    ),
-    Plot.dot(
-      [{x: 300, y: 300}], 
-      {
-        x: "x",
-        y: "y",
-        r:10,
-        fill: "#ff8200",
-        tip: true,
-        title: (d) => `July Candidates: ${d.x}\nPredicted Matches: ${d.y.toLocaleString("en-US")}`
-    })
-  ]
-  }))
-}
+      width,
+      marginBottom: 50,
+      marginLeft: 60,
+      caption: "Source: ERAS",
+       x: { tickFormat: "", label: "ERAS", labelOffset: 35 },
+       y: {label: "Candidates"},
+       marginTop: 30,
+      marks: [
+        Plot.ruleY([0]),
+        Plot.barY(app_year_cur_month, {
+          x: "ERAS", 
+          y: "num_candidate",
+          tip: true,
+          fill: "fill", 
+          insetLeft: 10, 
+          insetRight: 10,
+          title: (d) => `ERAS: ${d.ERAS}\nCandidates: ${d.num_candidate.toLocaleString("en-US")}`
+          })
+        ]
+      })
+    )
+  }
 
 </div>
 
   <div class="card">
-  <h2>fig 1</h2>
+  <h2>
+    <b>Candidates By Medical School ERAS 2024–ERAS 2025 Through ${
+      eras_2025_total[eras_2025_total.length - 1]["month_name"]
+      }
+    </b>  
+  </h2>
   ${
     resize((width) => Plot.plot({
-      title: "Predicted Nephrology Match Outcome",
-  width,
-  grid: true,
-  x: {label: "July Nephrology Candidates"},
-  y: {label: "Matched Nephrology Fellows"},
-  color: {legend: true},
-  marginBottom: 50,
-  marginLeft: 60,
-  marks: [
-    Plot.linearRegressionY(
-      july_regression, 
-      {x: "July", y: "Matched", stroke: "#ff8200"}
-    ),
-    Plot.dot(
-      july_regression, 
-      {x: "July", y: "Matched", tip: true}
-    ),
-    Plot.dot(
-      [{x: 300, y: 300}], 
-      {
-        x: "x",
-        y: "y",
-        r:10,
-        fill: "#ff8200",
-        tip: true,
-        title: (d) => `July Candidates: ${d.x}\nPredicted Matches: ${d.y.toLocaleString("en-US")}`
+      width,
+      x: {
+        axis: "top", 
+        type: "ordinal", 
+        tickFormat: "", 
+        inset: 90, 
+        label: "ERAS"
+        },
+      y: {
+        axis: null, 
+        inset: 20, 
+        label: "Candidates"
+        },
+      color: {legend: true},
+      marginBottom: 50,
+      marginLeft: 60,
+      marks: [
+        Plot.line(
+          candidates_med_status_yoy, 
+          {
+            x: "ERAS", 
+            y: "num_candidate", 
+            z: "edu_status", 
+            stroke: "color", 
+            tip: true
+          }),
+        Plot.text(
+          candidates_med_status_yoy, 
+          {
+            x: "ERAS", 
+            y: "num_candidate", 
+            margin: 30
+          })
+        ]
     })
-  ]
-  }))
+  )
 }
 
 </div>
@@ -148,18 +159,25 @@ const eras_2025_edu = FileAttachment("./data/eras_2025_edu.csv").csv({ typed: tr
 
 <div class="grid grid-cols-2">
   <div class="card">
-  <h2>fig 1</h2>
+  <h2>
+    <b>
+    Percent Change YOY Through ${
+      eras_2025_total[eras_2025_total.length - 1]["month_name"]
+      }
+    </b>
+  </h2>
   ${
-    resize((width) => Plot.plot({
+   resize((width) => Plot.plot({
       width,
       x: { tickFormat: "", label: "ERAS", labelOffset: 35 },
+      y: { tickFormat: "", label: "%", labelOffset: 35 },
       marks: [
         Plot.ruleY([0]),
-        Plot.barY(eras_2025_edu, {
+        Plot.barY(candidates_pct_change, {
           x: "ERAS", 
-          y: "num_candidate",
+          y: "pct_c",
           tip: true,
-          fill: "#ff8200", 
+          fill: "color", 
           insetLeft: 10, 
           insetRight: 10
         })
@@ -172,18 +190,23 @@ const eras_2025_edu = FileAttachment("./data/eras_2025_edu.csv").csv({ typed: tr
 </div>
 
   <div class="card">
-  <h2>fig 1</h2>
+   <h2>
+    <b>
+    Cumulative Candidates by ERAS Year  
+    </b>
+  </h2>
   ${
     resize((width) => Plot.plot({
       width,
-      x: { tickFormat: "", label: "ERAS", labelOffset: 35 },
+      x: { tickFormat: "", label: "Month", labelOffset: 35 },
+      y: {label: "Candidates"},
       marks: [
         Plot.ruleY([0]),
-        Plot.barY(eras_2025_edu, {
-          x: "ERAS", 
-          y: "num_candidate",
+        Plot.lineY(cum_candidates_year, {
+          x: "month", 
+          y: "tots_candidates",
           tip: true,
-          fill: "#ff8200", 
+          stroke: "color", 
           insetLeft: 10, 
           insetRight: 10
         })
