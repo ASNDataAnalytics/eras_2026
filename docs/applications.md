@@ -51,24 +51,27 @@ const cum_apps_year = FileAttachment("./data/cum_apps_year.csv").csv({ typed: tr
   </div>
   <div class="card">
     <h2>IMG Applications</h2>
-    <span class="big">${eras_2025_edu.filter((d) => d.ERAS === 2018)
-      .filter((d) => d.month === 9)
-      .filter((d) => d.edu_status === "IMG")
-      .map((d) => d.num_application)}</span>
+    <span class="big">${eras_2025_edu
+  .filter((d) => d.edu_status === "IMG")
+  .filter((d) => d.ERAS === eras_year)
+  .filter((d) => d.month_name === current_month)
+  .map((d) => d.num_application)}</span>
   </div>
   <div class="card">
     <h2>US MD Applications</h2>
-    <span class="big">${eras_2025_edu.filter((d) => d.ERAS === 2018)
-      .filter((d) => d.month === 9)
-      .filter((d) => d.edu_status === "US MD")
-      .map((d) => d.num_application)}</span>
+    <span class="big">${eras_2025_edu
+  .filter((d) => d.edu_status === "US MD")
+  .filter((d) => d.ERAS === eras_year)
+  .filter((d) => d.month_name === current_month)
+  .map((d) => d.num_application)}</span>
   </div>
   <div class="card">
     <h2>Osteopathic Applications</h2>
-    <span class="big">${   eras_2025_edu.filter((d) => d.ERAS === 2018)
-      .filter((d) => d.month === 9)
-      .filter((d) => d.edu_status === "US DO")
-      .map((d) => d.num_application)}</span>
+    <span class="big">${eras_2025_edu
+  .filter((d) => d.edu_status === "US DO")
+  .filter((d) => d.ERAS === eras_year)
+  .filter((d) => d.month_name === current_month)
+  .map((d) => d.num_application)}</span>
   </div>
 </div>
 
@@ -210,3 +213,9 @@ const cum_apps_year = FileAttachment("./data/cum_apps_year.csv").csv({ typed: tr
 </div>
 
 
+```js
+
+const current_month = eras_2025_edu[eras_2025_edu.length -1].month_name
+const eras_year = 2024
+
+```

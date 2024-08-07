@@ -45,24 +45,31 @@ const cum_candidates_year = FileAttachment("./data/cum_candidates_year.csv").csv
   </div>
   <div class="card">
     <h2>IMG Candidates</h2>
-    <span class="big">${eras_2025_edu.filter((d) => d.ERAS === 2018)
-      .filter((d) => d.month === 9)
-      .filter((d) => d.edu_status === "IMG")
-      .map((d) => d.num_candidate)}</span>
+    <span class="big">${eras_2025_edu
+  .filter((d) => d.edu_status === "IMG")
+  .filter((d) => d.ERAS === eras_year)
+  .filter((d) => d.month_name === current_month)
+  .map((d) => d.num_candidate)}</span>
   </div>
   <div class="card">
     <h2>US MD Candidates</h2>
-    <span class="big">${eras_2025_edu.filter((d) => d.ERAS === 2018)
+    <!-- <span class="big">${eras_2025_edu.filter((d) => d.ERAS === 2018)
       .filter((d) => d.month === 9)
       .filter((d) => d.edu_status === "US MD")
-      .map((d) => d.num_candidate)}</span>
+      .map((d) => d.num_candidate)}</span> -->
+    <span class="big">${eras_2025_edu
+  .filter((d) => d.edu_status === "US MD")
+  .filter((d) => d.ERAS === eras_year)
+  .filter((d) => d.month_name === current_month)
+  .map((d) => d.num_candidate)}</span>
   </div>
   <div class="card">
     <h2>Osteopathic Candidates</h2>
-    <span class="big">${   eras_2025_edu.filter((d) => d.ERAS === 2018)
-      .filter((d) => d.month === 9)
-      .filter((d) => d.edu_status === "US DO")
-      .map((d) => d.num_candidate)}</span>
+    <span class="big">${eras_2025_edu
+  .filter((d) => d.edu_status === "US DO")
+  .filter((d) => d.ERAS === eras_year)
+  .filter((d) => d.month_name === current_month)
+  .map((d) => d.num_candidate)}</span>
   </div>
 </div>
 
@@ -217,3 +224,28 @@ const cum_candidates_year = FileAttachment("./data/cum_candidates_year.csv").csv
 
 </div>
 </div>
+
+```js
+
+const current_month = eras_2025_edu[eras_2025_edu.length -1].month_name
+const eras_year = 2024
+
+```
+
+<!-- ```js
+eras_2025_edu
+  .filter((d) => d.edu_status === "US MD")
+  .filter((d) => d.ERAS === eras_year)
+  .filter((d) => d.month_name === current_month)
+  .map((d) => d.num_application)
+
+
+```
+
+```js
+current_month
+```
+
+```js
+Inputs.table(eras_2025_edu)
+``` -->
