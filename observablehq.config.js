@@ -20,6 +20,8 @@ export default {
   // theme: "default", // try "light", "dark", "slate", etc.
   // header: "", // what to show in the header (HTML)
   // footer: "Built with Observable.", // what to show in the footer (HTML)
+header: "<a href='https://data.asn-online.org'><img style='width: 200px' src='/asn_ko_button.png'></a>",
+footer: "<a href='https://data.asn-online.org'>ASN Data</a>"
   // toc: true, // whether to show the table of contents
   // pager: true, // whether to show previous & next links in the footer
   // root: "docs", // path to the source root for preview

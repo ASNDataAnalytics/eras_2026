@@ -1,8 +1,6 @@
 ---
 toc: false
 theme: midnight
-header: <a href="https://data.asn-online.org"><img src="/asn_ko_button.png"></a>
-footer: <a href="https://data.asn-online.org">ASN Data</a>
 ---
 
 <style>
@@ -48,15 +46,15 @@ p {
   color: "#0077c8";
   line-height: 1.5;
 }
-#observablehq-footer > div:nth-child(2) > a:nth-child(1){
+/* #observablehq-footer > div:nth-child(2) > a:nth-child(1){
   font-size: 3em;
-}
+} */
 
-@media (min-width: 640px) {
+/* @media (min-width: 640px) {
   .hero h1 {
     font-size: 90px;
   }
-}
+} */
 
 </style>
 
