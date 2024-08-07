@@ -26,6 +26,7 @@ jobs:
             any::stringr
             any::readxl
             any::scales
+            any::jsonify
 
 
       - name: Setup node

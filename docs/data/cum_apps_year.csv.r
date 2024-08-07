@@ -67,5 +67,5 @@ cum_apps_year <-
 # 05 Push to stdout ----
 
 cat(
-  format_csv(app_year_cur_month)
+  format_csv(cum_apps_year)
 )

@@ -29,22 +29,11 @@ svg {
 ```js
 const eras_2025_edu = FileAttachment("./data/eras_2025_edu.csv").csv({ typed: true});
 const eras_2025_total = FileAttachment("./data/eras_2025_total.csv").csv({ typed: true });
-const july_regression = [
-  {"Year":2014,"July":303,"Matched":306},
-  {"Year":2015,"July":274,"Matched":254},
-  {"Year":2016,"July":236,"Matched":276},
-  {"Year":2017,"July":235,"Matched":284},
-  {"Year":2018,"July":252,"Matched":285},
-  {"Year":2019,"July":286,"Matched":291},
-  {"Year":2020,"July":273,"Matched":291},
-  {"Year":2021,"July":375,"Matched":345},
-  {"Year":2022,"July":349,"Matched":335},
-  {"Year":2023,"July":368,"Matched":359}
-  ];
+
 const app_year_cur_month = FileAttachment("./data/app_year_cur_month.csv").csv({ typed: true});  
 const avg_apps = FileAttachment("./data/avg_apps_edu.csv").csv({ typed: true});
 const app_pct_change = FileAttachment("./data/app_pct_change.csv").csv({ typed: true });
-const cum_apps_year = FileAttachment("./data/cum_apps_year.csv.r").csv({ typed: true });
+const cum_apps_year = FileAttachment("./data/cum_apps_year.csv").csv({ typed: true });
 ```
 
 ###### ERAS 2025—Nephrology Applications
@@ -220,39 +209,4 @@ const cum_apps_year = FileAttachment("./data/cum_apps_year.csv.r").csv({ typed: 
 </div>
 </div>
 
-
-
-<!-- 
-```js
-eras_2025_edu[eras_2025_edu.length - 1]["ERAS"]
-```
-
-```js
-
-   eras_2025_edu.filter((d) => d.ERAS === 2018)
-      .filter((d) => d.month === 9)
-      .filter((d) => d.edu_status === "US DO")
-      .map((d) => d.num_candidate)
-
-```
-
-```js
-
-eras_2025_edu.filter((d) => d.month_year === 2017-10-01)
-    // .filter((d) => d.edu_status === "US DO")
-    // .map((d) => ({d.num_candidate})
-
-```
-
-```js
-Inputs.table(
-  eras_2025_edu.filter((d) => d.edu_status === "IMG" & d.ERAS === 2018 & d.month_name === "July")
-)
-
-```
-
-```js
-(3 / (eras_2025_edu[eras_2025_edu.length -1].num_application))
-
-``` -->
 

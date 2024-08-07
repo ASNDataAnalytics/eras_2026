@@ -29,7 +29,7 @@ const eras_2025_edu = FileAttachment("./data/eras_2025_edu.csv").csv({ typed: tr
 const app_year_cur_month = FileAttachment("./data/app_year_cur_month.csv").csv({ typed: true});
 const candidates_med_status_yoy = FileAttachment("./data/candidates_med_status_yoy.csv").csv({ typed: true });
 const candidates_pct_change = FileAttachment("./data/candidates_pct_change.csv").csv({ typed: true });
-const cum_candidates_year = FileAttachment("").csv({ typed: true });
+const cum_candidates_year = FileAttachment("./data/cum_candidates_year.csv").csv({ typed: true });
 ```
 
 <!-- ## ERAS 2025—Nephrology Candidates Through ${eras_2025_edu[eras_2025_edu.length - 1]["ERAS"]} -->
@@ -217,15 +217,3 @@ const cum_candidates_year = FileAttachment("").csv({ typed: true });
 
 </div>
 </div>
-
-
-
-<!-- ```js
-Inputs.table(eras_2025_total)
-```
-
-<br>
-
-```js
-Inputs.table(eras_2025_edu)
-``` -->
