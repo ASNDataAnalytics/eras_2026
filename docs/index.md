@@ -83,9 +83,9 @@ const reg_result = FileAttachment("./data/reg_result.csv").csv({ typed: true });
 appointment year (AY) 2025 nephrology Match indicate:</p>
 
 <ul>
-  <li style = 'padding: 10px; font-size: 16px;'>International medical graduates (IMGs) were down XX% compared with ERAS 2024.</li>
-  <li style = 'padding: 10px; font-size: 16px;'>Allopathic candidates were down XX%.</li>
-  <li style = 'padding: 10px; font-size: 16px;'>Osteopathic were down XX%.</li>
+  <li style = 'padding: 10px; font-size: 16px;'>International medical graduates (IMGs) were changed XX% compared with ERAS 2024.</li>
+  <li style = 'padding: 10px; font-size: 16px;'>Allopathic candidates were changed XX%.</li>
+  <li style = 'padding: 10px; font-size: 16px;'>Osteopathic were changed XX%.</li>
   <li style = 'padding: 10px; font-size: 16px;'>A simple least squares model predicts a potential for ~XXX matched nephrology fellows for AY 2025.</li>
 </ul>
   </div>

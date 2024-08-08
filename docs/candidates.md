@@ -139,12 +139,13 @@ const eras_year = eras_2025_edu[eras_2025_edu.length -1].ERAS
         type: "ordinal", 
         tickFormat: "", 
         inset: 90, 
-        label: "ERAS"
+        label: " ",
+        labelArrow: "none"
         },
       y: {
         axis: null, 
         inset: 20, 
-        label: "Candidates"
+        label: " "
         },
       color: {legend: true},
       marginBottom: 50,
@@ -158,14 +159,8 @@ const eras_year = eras_2025_edu[eras_2025_edu.length -1].ERAS
             y: "num_candidate", 
             z: "edu_status", 
             stroke: "color", 
-            tip: true
-          }),
-        Plot.text(
-          candidates_med_status_yoy, 
-          {
-            x: "ERAS", 
-            y: "num_candidate", 
-            margin: 30
+            tip: true,
+            title: (d) => `ERAS: ${d.ERAS}\nMed School: ${d.edu_status}\nTotal: ${d.num_candidate.toLocaleString("en-US")}`
           })
         ]
     })
@@ -200,6 +195,7 @@ const eras_year = eras_2025_edu[eras_2025_edu.length -1].ERAS
           x: "ERAS", 
           y: "pct_c",
           tip: true,
+          title: (d) => `ERAS: ${d.ERAS}\nChange: ${d.pct_c_text}`,
           fill: "color", 
           insetLeft: 10, 
           insetRight: 10
@@ -221,6 +217,7 @@ const eras_year = eras_2025_edu[eras_2025_edu.length -1].ERAS
   ${
     resize((width) => Plot.plot({
       width,
+      marginTop: 40,
       x: { tickFormat: "", label: "Month", labelOffset: 35 },
       y: {label: "Candidates", domain: [150, 550]},
       caption: "Source: ERAS",
@@ -231,6 +228,7 @@ const eras_year = eras_2025_edu[eras_2025_edu.length -1].ERAS
           y: "tots_candidates",
           tip: true,
           stroke: "color", 
+          title: (d) => `ERAS: ${d.ERAS}\nMonth: ${d.month_label}\nCandidates: ${d.tots_candidates.toLocaleString("en-US")}`,
           insetLeft: 10, 
           insetRight: 10
         })
