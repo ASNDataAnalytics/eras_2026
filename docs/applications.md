@@ -12,6 +12,9 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.observablehq-link-active > a:nth-child(1) {
+  color: #0077c8;
+}
 
 #observablehq-header {
   background-color: #00468b;
@@ -35,11 +38,18 @@ svg {
 ```js
 const eras_2025_edu = FileAttachment("./data/eras_2025_edu.csv").csv({ typed: true});
 const eras_2025_total = FileAttachment("./data/eras_2025_total.csv").csv({ typed: true });
-
 const app_year_cur_month = FileAttachment("./data/app_year_cur_month.csv").csv({ typed: true});  
 const avg_apps = FileAttachment("./data/avg_apps_edu.csv").csv({ typed: true});
 const app_pct_change = FileAttachment("./data/app_pct_change.csv").csv({ typed: true });
 const cum_apps_year = FileAttachment("./data/cum_apps_year.csv").csv({ typed: true });
+const monthly_totals = FileAttachment("./data/monthly_totals.csv").csv({ typed: true });
+```
+
+<!-- 01.01 Current ERAS Year and Application Month -->
+
+```js
+const current_month = eras_2025_edu[eras_2025_edu.length -1].month_name
+const eras_year = eras_2025_edu[eras_2025_edu.length -1].ERAS
 ```
 
 ###### ERAS 2025—Nephrology Applications
@@ -49,35 +59,26 @@ const cum_apps_year = FileAttachment("./data/cum_apps_year.csv").csv({ typed: tr
 <div class="grid grid-cols-4">
   <div class="card">
     <h2>Data Through</h2>
-    <span class="big">${
-      eras_2025_total[eras_2025_total.length - 1]["month_name"]
-      },  
-      ${eras_2025_total[eras_2025_total.length - 1]["ERAS"]}
+    <span class="big">${current_month}, ${eras_year}
     </span>
   </div>
   <div class="card">
     <h2>IMG Applications</h2>
-    <span class="big">${eras_2025_edu
-  .filter((d) => d.edu_status === "IMG")
-  .filter((d) => d.ERAS === eras_year)
-  .filter((d) => d.month_name === current_month)
-  .map((d) => d.num_application)}</span>
+    <span class="big">${monthly_totals
+      .filter((d) => d.edu_status === "IMG")
+      .map((d) => d.tots_application).toLocaleString("en-US")}</span>
   </div>
   <div class="card">
     <h2>US MD Applications</h2>
-    <span class="big">${eras_2025_edu
-  .filter((d) => d.edu_status === "US MD")
-  .filter((d) => d.ERAS === eras_year)
-  .filter((d) => d.month_name === current_month)
-  .map((d) => d.num_application)}</span>
+    <span class="big">${monthly_totals
+      .filter((d) => d.edu_status === "US MD")
+      .map((d) => d.tots_application).toLocaleString("en-US")}</span>
   </div>
   <div class="card">
     <h2>Osteopathic Applications</h2>
-    <span class="big">${eras_2025_edu
-  .filter((d) => d.edu_status === "US DO")
-  .filter((d) => d.ERAS === eras_year)
-  .filter((d) => d.month_name === current_month)
-  .map((d) => d.num_application)}</span>
+    <span class="big">${monthly_totals
+      .filter((d) => d.edu_status === "US DO")
+      .map((d) => d.tots_application).toLocaleString("en-US")}</span>
   </div>
 </div>
 
@@ -130,7 +131,9 @@ const cum_apps_year = FileAttachment("./data/cum_apps_year.csv").csv({ typed: tr
       x: {label: "Mean Applications"},
       y: {label: " "},
       marginBottom: 50,
+      marginTop: 150,
       marginLeft: 60,
+      caption: "Source: ERAS",
       marks: [
         Plot.barX(
           avg_apps,
@@ -171,6 +174,7 @@ const cum_apps_year = FileAttachment("./data/cum_apps_year.csv").csv({ typed: tr
       width,
       x: { tickFormat: "", label: "ERAS", labelOffset: 35 },
       y: { tickFormat: "", label: "%", labelOffset: 35 },
+      caption: "Source: ERAS",
       marks: [
         Plot.ruleY([0]),
         Plot.barY(app_pct_change, {
@@ -198,8 +202,10 @@ const cum_apps_year = FileAttachment("./data/cum_apps_year.csv").csv({ typed: tr
   ${
     resize((width) => Plot.plot({
       width,
+      marginTop: 40,
       x: { tickFormat: "", label: "Month", labelOffset: 35 },
-      y: {label: "Applications"},
+      y: {label: "Applications", domain: [4000, 14000]},
+      caption: "Source: ERAS",
       marks: [
         Plot.ruleY([0]),
         Plot.lineY(cum_apps_year, {
@@ -218,10 +224,3 @@ const cum_apps_year = FileAttachment("./data/cum_apps_year.csv").csv({ typed: tr
 </div>
 </div>
 
-
-```js
-
-const current_month = eras_2025_edu[eras_2025_edu.length -1].month_name
-const eras_year = 2024
-
-```

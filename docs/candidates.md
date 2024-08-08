@@ -4,6 +4,9 @@ toc: false
 title: Nephrology Candidates
 ---
 
+
+<!-- 01 Styling -->
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
@@ -14,6 +17,10 @@ body {
 .observablehq {
   font-family: 'Roboto', sans-serif;
   font-size: 3em;
+}
+
+.observablehq-link-active > a:nth-child(1) {
+  color: #0077c8;
 }
 
 #observablehq-header {
@@ -29,6 +36,8 @@ svg {
 
 </style>
 
+<!-- 02 Data -->
+
 ```js
 const eras_2025_total = FileAttachment("./data/eras_2025_total.csv").csv({ typed: true });
 const eras_2025_edu = FileAttachment("./data/eras_2025_edu.csv").csv({ typed: true});
@@ -36,46 +45,45 @@ const app_year_cur_month = FileAttachment("./data/app_year_cur_month.csv").csv({
 const candidates_med_status_yoy = FileAttachment("./data/candidates_med_status_yoy.csv").csv({ typed: true });
 const candidates_pct_change = FileAttachment("./data/candidates_pct_change.csv").csv({ typed: true });
 const cum_candidates_year = FileAttachment("./data/cum_candidates_year.csv").csv({ typed: true });
+const monthly_totals = FileAttachment("./data/monthly_totals.csv").csv({ typed: true });
 ```
 
-<!-- ## ERAS 2025—Nephrology Candidates Through ${eras_2025_edu[eras_2025_edu.length - 1]["ERAS"]} -->
+<!-- 02.01 Current ERAS Year and Application Month -->
+
+```js
+const current_month = eras_2025_edu[eras_2025_edu.length -1].month_name
+const eras_year = eras_2025_edu[eras_2025_edu.length -1].ERAS
+```
+
+
 ###### ERAS 2025—Nephrology Candidates
 
-
-<!-- Cards with big numbers -->
+<!-- 03 Cards Showing Top-Line Candidate Numbers -->
 
 <div class="grid grid-cols-4">
   <div class="card">
     <h2>Data Through</h2>
-    <span class="big">${eras_2025_total[eras_2025_total.length - 1]["month_name"]},  ${eras_2025_edu[eras_2025_edu.length - 1]["ERAS"]}</span>
+    <span class="big">${current_month}, ${eras_year}</span>
   </div>
   <div class="card">
     <h2>IMG Candidates</h2>
-    <span class="big">${eras_2025_edu
-  .filter((d) => d.edu_status === "IMG")
-  .filter((d) => d.ERAS === eras_year)
-  .filter((d) => d.month_name === current_month)
-  .map((d) => d.num_candidate)}</span>
+    <span class="big">${monthly_totals
+      .filter((d) => d.edu_status === "IMG")
+      .map((d) => d.tots_candidate)
+      }
+    </span>
   </div>
   <div class="card">
     <h2>US MD Candidates</h2>
-    <!-- <span class="big">${eras_2025_edu.filter((d) => d.ERAS === 2018)
-      .filter((d) => d.month === 9)
+    <span class="big">${monthly_totals
       .filter((d) => d.edu_status === "US MD")
-      .map((d) => d.num_candidate)}</span> -->
-    <span class="big">${eras_2025_edu
-  .filter((d) => d.edu_status === "US MD")
-  .filter((d) => d.ERAS === eras_year)
-  .filter((d) => d.month_name === current_month)
-  .map((d) => d.num_candidate)}</span>
+      .map((d) => d.tots_candidate)}</span>
   </div>
   <div class="card">
     <h2>Osteopathic Candidates</h2>
-    <span class="big">${eras_2025_edu
-  .filter((d) => d.edu_status === "US DO")
-  .filter((d) => d.ERAS === eras_year)
-  .filter((d) => d.month_name === current_month)
-  .map((d) => d.num_candidate)}</span>
+    <span class="big">${monthly_totals
+      .filter((d) => d.edu_status === "US DO")
+      .map((d) => d.tots_candidate)}</span>
   </div>
 </div>
 
@@ -141,6 +149,7 @@ const cum_candidates_year = FileAttachment("./data/cum_candidates_year.csv").csv
       color: {legend: true},
       marginBottom: 50,
       marginLeft: 60,
+      caption: "Source: ERAS",
       marks: [
         Plot.line(
           candidates_med_status_yoy, 
@@ -184,6 +193,7 @@ const cum_candidates_year = FileAttachment("./data/cum_candidates_year.csv").csv
       width,
       x: { tickFormat: "", label: "ERAS", labelOffset: 35 },
       y: { tickFormat: "", label: "%", labelOffset: 35 },
+      caption: "Source: ERAS",
       marks: [
         Plot.ruleY([0]),
         Plot.barY(candidates_pct_change, {
@@ -212,7 +222,8 @@ const cum_candidates_year = FileAttachment("./data/cum_candidates_year.csv").csv
     resize((width) => Plot.plot({
       width,
       x: { tickFormat: "", label: "Month", labelOffset: 35 },
-      y: {label: "Candidates"},
+      y: {label: "Candidates", domain: [150, 550]},
+      caption: "Source: ERAS",
       marks: [
         Plot.ruleY([0]),
         Plot.lineY(cum_candidates_year, {
@@ -231,27 +242,3 @@ const cum_candidates_year = FileAttachment("./data/cum_candidates_year.csv").csv
 </div>
 </div>
 
-```js
-
-const current_month = eras_2025_edu[eras_2025_edu.length -1].month_name
-const eras_year = 2024
-
-```
-
-<!-- ```js
-eras_2025_edu
-  .filter((d) => d.edu_status === "US MD")
-  .filter((d) => d.ERAS === eras_year)
-  .filter((d) => d.month_name === current_month)
-  .map((d) => d.num_application)
-
-
-```
-
-```js
-current_month
-```
-
-```js
-Inputs.table(eras_2025_edu)
-``` -->

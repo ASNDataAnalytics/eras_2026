@@ -17,13 +17,16 @@ body {
   font-family: 'Roboto', sans-serif;
   font-size: 3em;
 } */
+.observablehq-link-active > a:nth-child(1) {
+  color: #0077c8;
+}
 
 #observablehq-header {
   /* --theme-background-b: #cccccc; */
   background-color: #00468b;
   border-radius: 4px;
  }
- 
+
 svg {
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
@@ -33,6 +36,11 @@ p {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
 }
+
+/* li { */
+  /* font-size: 16px; */
+  /* padding: 10px; */
+/* } */
 
 /* #observablehq-footer > div:nth-child(2) > a:nth-child(1){
   font-size: 3em;
@@ -65,15 +73,23 @@ const reg_result = FileAttachment("./data/reg_result.csv").csv({ typed: true });
 
 <br>
 
-<p>Data provided by the Electronic Residency Application System (ERAS) on the 
-appointment year (AY) 2025 nephrology Match indicates .</p>
 
-<ul>
-  <li>IMGs were down XX%</li>
 
 <!-- 02 Viz -->
 
-<div class="grid grid-cols-1" style="grid-auto-rows: 504px;">
+<div class="grid grid-cols-2">
+  <div class="card">
+  <p>Electronic Residency Application System (ERAS) data on the 
+appointment year (AY) 2025 nephrology Match indicate:</p>
+
+<ul>
+  <li style = 'padding: 10px; font-size: 16px;'>International medical graduates (IMGs) were down XX% compared with ERAS 2024.</li>
+  <li style = 'padding: 10px; font-size: 16px;'>Allopathic candidates were down XX%.</li>
+  <li style = 'padding: 10px; font-size: 16px;'>Osteopathic were down XX%.</li>
+  <li style = 'padding: 10px; font-size: 16px;'>A simple least squares model predicts a potential for ~XXX matched nephrology fellows for AY 2025.</li>
+</ul>
+  </div>
+
   <div class="card">
     <h2>
       <b>Predicted Matches for AY 2025</b>
@@ -106,7 +122,7 @@ appointment year (AY) 2025 nephrology Match indicates .</p>
             r: 8,
             fill: "#00468b",
             tip: true,
-            title: (d) => `July Candidates: ${d.July}\nPredicted Matches: ${d.Matched.toLocaleString("en-US")}`
+            title: (d) => `July Candidates: ${d.July}\n\nPredicted Matches: ${d.Matched.toLocaleString("en-US")}`
           })
         ]
       })
