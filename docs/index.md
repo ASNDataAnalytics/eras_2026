@@ -13,11 +13,17 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-.observablehq {
+/* .observablehq {
   font-family: 'Roboto', sans-serif;
   font-size: 3em;
-}
+} */
 
+#observablehq-header {
+  /* --theme-background-b: #cccccc; */
+  background-color: #00468b;
+  border-radius: 4px;
+ }
+ 
 svg {
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
@@ -55,12 +61,15 @@ const cum_apps_year = FileAttachment("./data/cum_apps_year.csv").csv({ typed: tr
 const reg_result = FileAttachment("./data/reg_result.csv").csv({ typed: true });
 ```
 
-<h4>ERAS 2025 Nephrology Fellowship Applications</h43>
+# ERAS 2025 Nephrology Fellowship Applications
 
 <br>
 
 <p>Data provided by the Electronic Residency Application System (ERAS) on the 
-appointment year (AY) 2025 nephrology Match .</p>
+appointment year (AY) 2025 nephrology Match indicates .</p>
+
+<ul>
+  <li>IMGs were down XX%</li>
 
 <!-- 02 Viz -->
 
@@ -94,8 +103,8 @@ appointment year (AY) 2025 nephrology Match .</p>
           {
             x: "July",
             y: "Matched",
-            r: 10,
-            fill: "#ff8200",
+            r: 8,
+            fill: "#00468b",
             tip: true,
             title: (d) => `July Candidates: ${d.July}\nPredicted Matches: ${d.Matched.toLocaleString("en-US")}`
           })
@@ -107,9 +116,6 @@ appointment year (AY) 2025 nephrology Match .</p>
   </div>
 </div>
 
-```js
-Inputs.table(reg_result)
-```
 
 ---
 

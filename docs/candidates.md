@@ -16,6 +16,12 @@ body {
   font-size: 3em;
 }
 
+#observablehq-header {
+  /* --theme-background-b: #cccccc; */
+  background-color: #00468b;
+  border-radius: 4px;
+ }
+
 svg {
   font-family: 'Roboto', sans-serif;
   font-size: 14px;

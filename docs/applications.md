@@ -12,6 +12,12 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+
+#observablehq-header {
+  background-color: #00468b;
+  border-radius: 4px;
+ }
+
 .observablehq {
   font-family: 'Roboto', sans-serif;
   font-size: 3em;
