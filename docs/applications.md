@@ -173,7 +173,7 @@ const eras_year = eras_2025_edu[eras_2025_edu.length -1].ERAS
     resize((width) => Plot.plot({
       width,
       x: { tickFormat: "", label: "ERAS", labelOffset: 35 },
-      y: { tickFormat: "", label: "%", labelOffset: 35 },
+      y: { tickFormat: "", label: "\%", labelOffset: 35 },
       caption: "Source: ERAS",
       marks: [
         Plot.ruleY([0]),
@@ -183,7 +183,8 @@ const eras_year = eras_2025_edu[eras_2025_edu.length -1].ERAS
           tip: true,
           fill: "color", 
           insetLeft: 10, 
-          insetRight: 10
+          insetRight: 10,
+          title: (d) => `ERAS: ${d.ERAS}\nChange: ${d.pct_c_text}`
         })
       ],
       marginBottom: 60
@@ -203,7 +204,7 @@ const eras_year = eras_2025_edu[eras_2025_edu.length -1].ERAS
     resize((width) => Plot.plot({
       width,
       marginTop: 40,
-      x: { tickFormat: "", label: "Month", labelOffset: 35 },
+      x: { tickFormat: "", label: "Month", labelOffset: 35, domain: [7, 8, 9, 10, 11]},
       y: {label: "Applications", domain: [4000, 14000]},
       caption: "Source: ERAS",
       marks: [
@@ -212,6 +213,7 @@ const eras_year = eras_2025_edu[eras_2025_edu.length -1].ERAS
           x: "month", 
           y: "tots_applications",
           tip: true,
+          title: (d) => `ERAS: ${d.ERAS}\nMonth: ${d.month_label}\nApplications: ${d.tots_applications.toLocaleString("en-US")}`,
           stroke: "color", 
           insetLeft: 10, 
           insetRight: 10
