@@ -112,7 +112,7 @@ appointment year (AY) 2025 nephrology Match indicate:</p>
         ),
         Plot.dot(
           july_regression, 
-          {x: "July", y: "Matched", tip: true}
+          {x: "July", y: "Matched", tip: true, lineHeight: 1.5}
         ),
         Plot.dot(
           [{"July": 313, "Matched": 313}], 

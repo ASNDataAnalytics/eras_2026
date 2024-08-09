@@ -162,7 +162,61 @@ const calendar_year = eras_2025_edu[eras_2025_edu.length -1].ERAS - 1
             stroke: "color", 
             tip: true,
             title: (d) => `ERAS: ${d.ERAS}\nMed School: ${d.edu_status}\nTotal: ${d.num_candidate.toLocaleString("en-US")}`
-          })
+          }),
+        Plot.tip([`IMG`], {
+          x: 2023,
+          y: 340,
+          anchor: "right",
+          stroke: "#000000",
+          fill: null,
+          fontWeight: "bold",
+          fontSize: 18,
+        }),
+        Plot.tip([`US MD`], {
+          x: 2023,
+          y: 115,
+          anchor: "right",
+          stroke: "#000000",
+          fill: null,
+          fontWeight: "bold",
+          fontSize: 18
+        }),
+        Plot.tip([`US DO`], {
+          x: 2023,
+          y: 75,
+          anchor: "right",
+          stroke: "#000000",
+          fill: null,
+          fontWeight: "bold",
+          fontSize: 18
+        }),
+        Plot.tip([`IMG`], {
+          x: 2024,
+          y: 320,
+          anchor: "left",
+          stroke: "#000000",
+          fill: null,
+          fontWeight: "bold",
+          fontSize: 18,
+        }),
+        Plot.tip([`US MD`], {
+          x: 2024,
+          y: 95,
+          anchor: "left",
+          stroke: "#000000",
+          fill: null,
+          fontWeight: "bold",
+          fontSize: 18
+        }),
+        Plot.tip([`US DO`], {
+          x: 2024,
+          y: 75,
+          anchor: "left",
+          stroke: "#000000",
+          fill: null,
+          fontWeight: "bold",
+          fontSize: 18
+        })
         ]
     })
   )
