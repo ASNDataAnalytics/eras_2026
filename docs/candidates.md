@@ -53,6 +53,7 @@ const monthly_totals = FileAttachment("./data/monthly_totals.csv").csv({ typed: 
 ```js
 const current_month = eras_2025_edu[eras_2025_edu.length -1].month_name
 const eras_year = eras_2025_edu[eras_2025_edu.length -1].ERAS
+const calendar_year = eras_2025_edu[eras_2025_edu.length -1].ERAS - 1
 ```
 
 
@@ -63,7 +64,7 @@ const eras_year = eras_2025_edu[eras_2025_edu.length -1].ERAS
 <div class="grid grid-cols-4">
   <div class="card">
     <h2>Data Through</h2>
-    <span class="big">${current_month}, ${eras_year}</span>
+    <span class="big">${current_month}, ${calendar_year}</span>
   </div>
   <div class="card">
     <h2>IMG Candidates</h2>
