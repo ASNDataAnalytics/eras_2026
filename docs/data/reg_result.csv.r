@@ -27,14 +27,14 @@ eras_model <-
 
 eras_model
 
-eras_2025 <- 
+eras_2025 <-
   data.frame(
-    July = 312
+    July = 360
   )
 
 eras_prediction <-
   data.frame(
-    July = df[nrow(df), "July"],
+    July = 360,
     Matched = predict(eras_model, eras_2025) |> round(0)
   )
 
