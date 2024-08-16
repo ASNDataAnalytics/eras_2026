@@ -76,18 +76,32 @@ const reg_result = FileAttachment("./data/reg_result.csv").csv({ typed: true });
 <!-- 02 Viz -->
 
 <div class="grid grid-cols-2">
+
   <div class="card">
+  <p>Electronic Residency Application System (ERAS) data on the 
+appointment year (AY) 2025 nephrology Match indicate:</p>
 
-    <p>Electronic Residency Application System (ERAS) data on the
-  appointment year (AY) 2025 nephrology Match indicate:</p>
+<ul>
+  <li style = 'padding: 10px; font-size: 16px;'>Nephrology candidates were up 15% compared with the ERAS 2024 application cycle. Applications were flat year over year, with average applications per candidate dropping to 27.8.</li>
+  <li style = 'padding: 10px; font-size: 16px;'>International medical graduates (IMGs) were changed XX% compared with ERAS 2024.</li>
+  <li style = 'padding: 10px; font-size: 16px;'>Allopathic candidates were changed XX%.</li>
+  <li style = 'padding: 10px; font-size: 16px;'>Osteopathic were changed XX%.</li>
+  <li style = 'padding: 10px; font-size: 16px;'>A simple least squares model predicts a potential for ~XXX matched nephrology fellows for AY 2025.</li>
+</ul>
+  </div>
 
+
+  <!-- <div class="card">
+
+
+    Electronic Residency Application System (ERAS) data on the appointment year (AY) 2025 nephrology Match indicate:
     <ul>
       <li style = 'padding: 10px; font-size: 16px;'>Nephrology candidates were up 15% compared with the ERAS 2024 application cycle. Applications were flat year over year, with average applications per candidate dropping to 27.8.</li>
       <li style = 'padding: 10px; font-size: 16px;'>International medical graduate candidates (IMGs) were up 7%.</li>
       <li style = 'padding: 10px; font-size: 16px;'>Allopathic candidates were up 14% and osteopathic candidates up 42%.</li>
       <li style = 'padding: 10px; font-size: 16px;'>A simple least squares model predicts a potential for ~341 matched nephrology fellows for AY 2025.</li>
     </ul>
-  </div>
+  </div> -->
 
   <div class="card">
     <h2>
@@ -111,17 +125,23 @@ const reg_result = FileAttachment("./data/reg_result.csv").csv({ typed: true });
         ),
         Plot.dot(
           july_regression,
-          {x: "July", y: "Matched", tip: true, lineHeight: 1.5}
+          {
+            x: "July", 
+            y: "Matched", 
+            tip: true, 
+            lineHeight: 1.5, 
+            title: (d) => `ERAS: ${d.Year}\nJuly Candidates: ${d.July}\nMatched: ${d.Matched}`
+          }
         ),
         Plot.dot(
-          [{"July": 360, "Matched": 341}],
+          [{"Year": 2025, "July": 360, "Matched": 341}],
           {
             x: "July",
             y: "Matched",
             r: 8,
             fill: "#00468b",
             tip: true,
-            title: (d) => `July Candidates: ${d.July}\n\nPredicted Matches: ${d.Matched.toLocaleString("en-US")}`
+            title: (d) => `ERAS: ${d.Year}\nJuly Candidates: ${d.July}\nPREDICTED MATCHES: ${d.Matched.toLocaleString("en-US")}`
           })
         ]
       })
