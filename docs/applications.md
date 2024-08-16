@@ -174,7 +174,7 @@ const calendar_year = eras_2025_edu[eras_2025_edu.length -1].ERAS - 1
     resize((width) => Plot.plot({
       width,
       x: { tickFormat: "", label: "ERAS", labelOffset: 35 },
-      y: { tickFormat: "", label: "%", labelOffset: 35 },
+      y: { tickFormat: d3.format(".0%"), label: "%", labelOffset: 35 },
       caption: "Source: ERAS",
       marks: [
         Plot.ruleY([0]),

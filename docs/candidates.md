@@ -210,7 +210,7 @@ const calendar_year = eras_2025_edu[eras_2025_edu.length -1].ERAS - 1
         }),
         Plot.tip([`US DO`], {
           x: 2025,
-          y: 80,
+          y: 85,
           anchor: "left",
           stroke: "#000000",
           fill: null,
