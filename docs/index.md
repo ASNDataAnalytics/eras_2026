@@ -83,10 +83,9 @@ appointment year (AY) 2025 nephrology Match indicate:</p>
 
 <ul>
   <li style = 'padding: 10px; font-size: 16px;'>Nephrology candidates were up 15% compared with the ERAS 2024 application cycle. Applications were flat year over year, with average applications per candidate dropping to 27.8.</li>
-  <li style = 'padding: 10px; font-size: 16px;'>International medical graduates (IMGs) were changed XX% compared with ERAS 2024.</li>
-  <li style = 'padding: 10px; font-size: 16px;'>Allopathic candidates were changed XX%.</li>
-  <li style = 'padding: 10px; font-size: 16px;'>Osteopathic were changed XX%.</li>
-  <li style = 'padding: 10px; font-size: 16px;'>A simple least squares model predicts a potential for ~XXX matched nephrology fellows for AY 2025.</li>
+  <li style = 'padding: 10px; font-size: 16px;'>International medical graduates (IMGs) were up 7%.</li>
+  <li style = 'padding: 10px; font-size: 16px;'>Allopathic candidates were up 14% and osteopathic candidates were up 42%.</li>
+  <li style = 'padding: 10px; font-size: 16px;'>A simple least squares model predicts a potential for ~341 matched nephrology fellows for AY 2025.</li>
 </ul>
   </div>
 

@@ -164,8 +164,8 @@ const calendar_year = eras_2025_edu[eras_2025_edu.length -1].ERAS - 1
             title: (d) => `ERAS: ${d.ERAS}\nMed School: ${d.edu_status}\nTotal: ${d.num_candidate.toLocaleString("en-US")}`
           }),
         Plot.tip([`IMG`], {
-          x: 2023,
-          y: 340,
+          x: 2024,
+          y: 180,
           anchor: "right",
           stroke: "#000000",
           fill: null,
@@ -173,8 +173,8 @@ const calendar_year = eras_2025_edu[eras_2025_edu.length -1].ERAS - 1
           fontSize: 18,
         }),
         Plot.tip([`US MD`], {
-          x: 2023,
-          y: 115,
+          x: 2024,
+          y: 70,
           anchor: "right",
           stroke: "#000000",
           fill: null,
@@ -182,8 +182,8 @@ const calendar_year = eras_2025_edu[eras_2025_edu.length -1].ERAS - 1
           fontSize: 18
         }),
         Plot.tip([`US DO`], {
-          x: 2023,
-          y: 75,
+          x: 2024,
+          y: 58,
           anchor: "right",
           stroke: "#000000",
           fill: null,
@@ -191,8 +191,8 @@ const calendar_year = eras_2025_edu[eras_2025_edu.length -1].ERAS - 1
           fontSize: 18
         }),
         Plot.tip([`IMG`], {
-          x: 2024,
-          y: 320,
+          x: 2025,
+          y: 193,
           anchor: "left",
           stroke: "#000000",
           fill: null,
@@ -200,8 +200,8 @@ const calendar_year = eras_2025_edu[eras_2025_edu.length -1].ERAS - 1
           fontSize: 18,
         }),
         Plot.tip([`US MD`], {
-          x: 2024,
-          y: 95,
+          x: 2025,
+          y: 75,
           anchor: "left",
           stroke: "#000000",
           fill: null,
@@ -209,8 +209,8 @@ const calendar_year = eras_2025_edu[eras_2025_edu.length -1].ERAS - 1
           fontSize: 18
         }),
         Plot.tip([`US DO`], {
-          x: 2024,
-          y: 75,
+          x: 2025,
+          y: 80,
           anchor: "left",
           stroke: "#000000",
           fill: null,
@@ -273,7 +273,7 @@ const calendar_year = eras_2025_edu[eras_2025_edu.length -1].ERAS - 1
     resize((width) => Plot.plot({
       width,
       marginTop: 40,
-      x: { tickFormat: "", label: "Month", labelOffset: 35 },
+      x: { tickFormat: "", label: "Month", labelOffset: 35, domain: [7, 8, 9, 10, 11] },
       y: {label: "Candidates", domain: [150, 550]},
       caption: "Source: ERAS",
       marks: [
