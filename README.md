@@ -1,4 +1,4 @@
-# ERAS 2025
+# ERAS 2026
 
 This is an [Observable Framework](https://observablehq.com/framework) project. To start the local preview server, run:
 
