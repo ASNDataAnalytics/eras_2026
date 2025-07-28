@@ -1,7 +1,7 @@
 // See https://observablehq.com/framework/config for documentation.
 export default {
   // The project’s title; used in the sidebar and webpage titles.
-  title: "ERAS 2025",
+  title: "ERAS 2026",
 
   // The pages and sections in the sidebar. If you don’t specify this option,
   // all pages will be listed in alphabetical order. Listing pages explicitly
@@ -20,7 +20,7 @@ export default {
   // theme: "default", // try "light", "dark", "slate", etc.
   // header: "", // what to show in the header (HTML)
   // footer: "Built with Observable.", // what to show in the footer (HTML)
-header: "<a href='https://data.asn-online.org'><img style='width: 200px; padding: 10px 5px 5px 25px;' src='/asn_ko_button.png'></a>",
+header: "<a href='https://data.asn-online.org'><img style='width: 200px; padding: 10px 5px 5px 25px;' src='/asn_data_ko.png'></a>",
 footer: "<a href='https://data.asn-online.org'>ASN Data</a>"
   // toc: true, // whether to show the table of contents
   // pager: true, // whether to show previous & next links in the footer

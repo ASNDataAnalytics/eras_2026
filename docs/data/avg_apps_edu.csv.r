@@ -74,7 +74,7 @@ df_edu_fun <- function(data = df_edu) {
 
 df_edu <- 
   read_excel(
-    "docs/data/2024-07-29_eras_historic_data.xlsx",
+    "docs/data/00_eras.xlsx",
     sheet = "01_Edu-Status"
   )
 
@@ -144,7 +144,7 @@ avg_apps <-
     ERAS, edu_status
   ) |>
   summarize(
-    across(where(is.numeric), sum, na.rm = FALSE)
+    across(where(is.numeric), \(x) sum(x, na.rm = FALSE))
   ) |> 
   ungroup() |> 
   mutate(

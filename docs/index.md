@@ -62,14 +62,15 @@ const july_regression = [
   {"Year":2021,"July":375,"Matched":345},
   {"Year":2022,"July":349,"Matched":335},
   {"Year":2023,"July":368,"Matched":359},
-  {"Year":2024,"July":313,"Matched":321}
+  {"Year":2024,"July":313,"Matched":321},
+  {"Year":2025,"July":360,"Matched":362}
   ];
 
 const cum_apps_year = FileAttachment("./data/cum_apps_year.csv").csv({ typed: true });
 const reg_result = FileAttachment("./data/reg_result.csv").csv({ typed: true });
 ```
 
-# ERAS 2025 Nephrology Fellowship Applications
+# ERAS 2026 Nephrology Fellowship Applications
 
 <br>
 
@@ -77,9 +78,9 @@ const reg_result = FileAttachment("./data/reg_result.csv").csv({ typed: true });
 
 <div class="grid grid-cols-2">
 
-  <div class="card">
+  <!-- <div class="card">
   <p>Electronic Residency Application System (ERAS) data on the 
-appointment year (AY) 2025 nephrology Match indicate:</p>
+appointment year (AY) 2026 nephrology Match indicate:</p>
 
 <ul>
   <li style = 'padding: 10px; font-size: 16px;'>Through August 20, 2024, nephrology candidates were up 11% compared with the ERAS 2024 application cycle. Applications were flat year over year, with average applications per candidate dropping to 26.</li>
@@ -87,24 +88,24 @@ appointment year (AY) 2025 nephrology Match indicate:</p>
   <li style = 'padding: 10px; font-size: 16px;'>Allopathic candidates were up 14% and osteopathic candidates were up 42%.</li>
   <li style = 'padding: 10px; font-size: 16px;'>A simple least squares model using July candidate totals predicts a potential for ~341 matched nephrology fellows for AY 2025.</li>
 </ul>
-  </div>
-
-
-  <!-- <div class="card">
-
-
-    Electronic Residency Application System (ERAS) data on the appointment year (AY) 2025 nephrology Match indicate:
-    <ul>
-      <li style = 'padding: 10px; font-size: 16px;'>Nephrology candidates were up 15% compared with the ERAS 2024 application cycle. Applications were flat year over year, with average applications per candidate dropping to 27.8.</li>
-      <li style = 'padding: 10px; font-size: 16px;'>International medical graduate candidates (IMGs) were up 7%.</li>
-      <li style = 'padding: 10px; font-size: 16px;'>Allopathic candidates were up 14% and osteopathic candidates up 42%.</li>
-      <li style = 'padding: 10px; font-size: 16px;'>A simple least squares model predicts a potential for ~341 matched nephrology fellows for AY 2025.</li>
-    </ul>
   </div> -->
+
+
+  <div class="card">
+
+
+    Electronic Residency Application System (ERAS) data on the appointment year (AY) 2026 nephrology Match indicate:
+    <ul>
+      <li style = 'padding: 10px; font-size: 16px;'>Nephrology candidates were [up/down] XX% compared with the ERAS 2025 application cycle. Applications were [flat/up/down] year over year, with average applications per candidate [dropping/rising] to XX.X.</li>
+      <li style = 'padding: 10px; font-size: 16px;'>International medical graduate candidates (IMGs) were up [up/down] XX%.</li>
+      <li style = 'padding: 10px; font-size: 16px;'>Allopathic candidates were up 14% and osteopathic candidates [up/down] XX%.</li>
+      <li style = 'padding: 10px; font-size: 16px;'>A simple least squares model predicts with a total of XXX candidates in July a potential for ~XXX matched nephrology fellows for AY 2026.</li>
+    </ul>
+  </div>
 
   <div class="card">
     <h2>
-      <b>Predicted Matches for AY 2025</b>
+      <b>Predicted Matches for AY 2026</b>
     </h2>
   ${
     resize((width) => Plot.plot({
@@ -133,7 +134,7 @@ appointment year (AY) 2025 nephrology Match indicate:</p>
           }
         ),
         Plot.dot(
-          [{"Year": 2025, "July": 360, "Matched": 341}],
+          [{"Year": 2026, "July": 360, "Matched": 333}], 
           {
             x: "July",
             y: "Matched",

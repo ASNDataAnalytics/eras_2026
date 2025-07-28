@@ -17,7 +17,8 @@ df <- jsonify::from_json('[
   {"Year":2021,"July":375,"Matched":345},
   {"Year":2022,"July":349,"Matched":335},
   {"Year":2023,"July":368,"Matched":359},
-  {"Year":2024,"July":313,"Matched":321}
+  {"Year":2024,"July":313,"Matched":321},
+  {"Year":2025,"July":360,"Matched":362}
   ]')
 
 # 03 Build Model ----
@@ -27,15 +28,15 @@ eras_model <-
 
 eras_model
 
-eras_2025 <-
+eras_2026 <-
   data.frame(
-    July = 360
+    July = 340 # PLACEHOLDER VALUE ONLY!!! REPLACE WITH REAL JULY VALUE
   )
 
 eras_prediction <-
   data.frame(
     July = 360,
-    Matched = predict(eras_model, eras_2025) |> round(0)
+    Matched = predict(eras_model, eras_2026) |> round(0)
   )
 
 # 04 Send to stdout() ----

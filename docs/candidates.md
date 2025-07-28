@@ -39,8 +39,8 @@ svg {
 <!-- 02 Data -->
 
 ```js
-const eras_2025_total = FileAttachment("./data/eras_2025_total.csv").csv({ typed: true });
-const eras_2025_edu = FileAttachment("./data/eras_2025_edu.csv").csv({ typed: true});
+const eras_total = FileAttachment("./data/eras_total.csv").csv({ typed: true });
+const eras_edu = FileAttachment("./data/eras_edu.csv").csv({ typed: true});
 const app_year_cur_month = FileAttachment("./data/app_year_cur_month.csv").csv({ typed: true});
 const candidates_med_status_yoy = FileAttachment("./data/candidates_med_status_yoy.csv").csv({ typed: true });
 const candidates_pct_change = FileAttachment("./data/candidates_pct_change.csv").csv({ typed: true });
@@ -51,13 +51,13 @@ const monthly_totals = FileAttachment("./data/monthly_totals.csv").csv({ typed: 
 <!-- 02.01 Current ERAS Year and Application Month -->
 
 ```js
-const current_month = eras_2025_edu[eras_2025_edu.length -1].month_name
-const eras_year = eras_2025_edu[eras_2025_edu.length -1].ERAS
-const calendar_year = eras_2025_edu[eras_2025_edu.length -1].ERAS - 1
+const current_month = eras_edu[eras_edu.length -1].month_name
+const eras_year = eras_edu[eras_edu.length -1].ERAS
+const calendar_year = eras_edu[eras_edu.length -1].ERAS - 1
 ```
 
 
-###### ERAS 2025—Nephrology Candidates
+###### ERAS 2026—Nephrology Candidates
 
 <!-- 03 Cards Showing Top-Line Candidate Numbers -->
 
@@ -95,7 +95,7 @@ const calendar_year = eras_2025_edu[eras_2025_edu.length -1].ERAS - 1
 <div class="grid grid-cols-2">
   <div class="card">
   <h2><b>Cumulative Candidates Through ${
-      eras_2025_total[eras_2025_total.length - 1]["month_name"]
+      eras_total[eras_total.length - 1]["month_name"]
       }</b>
   </h2>
   ${
@@ -123,12 +123,14 @@ const calendar_year = eras_2025_edu[eras_2025_edu.length -1].ERAS - 1
     )
   }
 
+<!-- This needs to be updated MANUALLY...ugh -->
+
 </div>
 
   <div class="card">
   <h2>
-    <b>Candidates By Medical School ERAS 2024–ERAS 2025 Through ${
-      eras_2025_total[eras_2025_total.length - 1]["month_name"]
+    <b>Candidates By Medical School ERAS 2025–ERAS 2026 Through ${
+      eras_total[eras_total.length - 1]["month_name"]
       }
     </b>  
   </h2>
@@ -164,7 +166,7 @@ const calendar_year = eras_2025_edu[eras_2025_edu.length -1].ERAS - 1
             title: (d) => `ERAS: ${d.ERAS}\nMed School: ${d.edu_status}\nTotal: ${d.num_candidate.toLocaleString("en-US")}`
           }),
         Plot.tip([`IMG`], {
-          x: 2024,
+          x: 2025,
           y: 180,
           anchor: "right",
           stroke: "#000000",
@@ -173,7 +175,7 @@ const calendar_year = eras_2025_edu[eras_2025_edu.length -1].ERAS - 1
           fontSize: 18,
         }),
         Plot.tip([`US MD`], {
-          x: 2024,
+          x: 2025,
           y: 70,
           anchor: "right",
           stroke: "#000000",
@@ -182,7 +184,7 @@ const calendar_year = eras_2025_edu[eras_2025_edu.length -1].ERAS - 1
           fontSize: 18
         }),
         Plot.tip([`US DO`], {
-          x: 2024,
+          x: 2025,
           y: 58,
           anchor: "right",
           stroke: "#000000",
@@ -191,7 +193,7 @@ const calendar_year = eras_2025_edu[eras_2025_edu.length -1].ERAS - 1
           fontSize: 18
         }),
         Plot.tip([`IMG`], {
-          x: 2025,
+          x: 2026,
           y: 193,
           anchor: "left",
           stroke: "#000000",
@@ -200,7 +202,7 @@ const calendar_year = eras_2025_edu[eras_2025_edu.length -1].ERAS - 1
           fontSize: 18,
         }),
         Plot.tip([`US MD`], {
-          x: 2025,
+          x: 2026,
           y: 75,
           anchor: "left",
           stroke: "#000000",
@@ -209,7 +211,7 @@ const calendar_year = eras_2025_edu[eras_2025_edu.length -1].ERAS - 1
           fontSize: 18
         }),
         Plot.tip([`US DO`], {
-          x: 2025,
+          x: 2026,
           y: 92,
           anchor: "left",
           stroke: "#000000",
@@ -234,7 +236,7 @@ const calendar_year = eras_2025_edu[eras_2025_edu.length -1].ERAS - 1
   <h2>
     <b>
     Percent Change YOY Through ${
-      eras_2025_total[eras_2025_total.length - 1]["month_name"]
+      eras_total[eras_total.length - 1]["month_name"]
       }
     </b>
   </h2>

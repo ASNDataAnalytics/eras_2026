@@ -36,8 +36,8 @@ svg {
 <!-- 01 Data -->
 
 ```js
-const eras_2025_edu = FileAttachment("./data/eras_2025_edu.csv").csv({ typed: true});
-const eras_2025_total = FileAttachment("./data/eras_2025_total.csv").csv({ typed: true });
+const eras_edu = FileAttachment("./data/eras_edu.csv").csv({ typed: true});
+const eras_total = FileAttachment("./data/eras_total.csv").csv({ typed: true });
 const app_year_cur_month = FileAttachment("./data/app_year_cur_month.csv").csv({ typed: true});  
 const avg_apps = FileAttachment("./data/avg_apps_edu.csv").csv({ typed: true});
 const app_pct_change = FileAttachment("./data/app_pct_change.csv").csv({ typed: true });
@@ -48,12 +48,12 @@ const monthly_totals = FileAttachment("./data/monthly_totals.csv").csv({ typed: 
 <!-- 01.01 Current ERAS Year and Application Month -->
 
 ```js
-const current_month = eras_2025_edu[eras_2025_edu.length -1].month_name
-const eras_year = eras_2025_edu[eras_2025_edu.length -1].ERAS
-const calendar_year = eras_2025_edu[eras_2025_edu.length -1].ERAS - 1
+const current_month = eras_edu[eras_edu.length -1].month_name
+const eras_year = eras_edu[eras_edu.length -1].ERAS
+const calendar_year = eras_edu[eras_edu.length -1].ERAS - 1
 ```
 
-###### ERAS 2025—Nephrology Applications
+###### ERAS 2026—Nephrology Applications
 
 <!-- 02 Cards Showing Top-Line Application Numbers -->
 
@@ -90,7 +90,7 @@ const calendar_year = eras_2025_edu[eras_2025_edu.length -1].ERAS - 1
 <div class="grid grid-cols-2">
   <div class="card">
   <h2><b>Cumulative Applications Through ${
-      eras_2025_total[eras_2025_total.length - 1]["month_name"]
+      eras_total[eras_total.length - 1]["month_name"]
       }</b>
   </h2>
   ${
@@ -122,7 +122,7 @@ const calendar_year = eras_2025_edu[eras_2025_edu.length -1].ERAS - 1
   <div class="card">
   <h2>
     <b>Mean Applications/Candidate by Medical School Through ${
-      eras_2025_total[eras_2025_total.length - 1]["month_name"]
+      eras_total[eras_total.length - 1]["month_name"]
       }
     </b>
   </h2>
@@ -166,7 +166,7 @@ const calendar_year = eras_2025_edu[eras_2025_edu.length -1].ERAS - 1
   <h2>
     <b>
     Percent Change YOY Through ${
-      eras_2025_total[eras_2025_total.length - 1]["month_name"]
+      eras_total[eras_total.length - 1]["month_name"]
       }
     </b>
   </h2>
